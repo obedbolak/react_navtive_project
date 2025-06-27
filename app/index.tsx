@@ -157,6 +157,7 @@ const [loaded] = useFonts({
 
         </View>
          {chats.map(function(chat, index){
+          
           return(
             <TouchableOpacity key={index} style={styles.container21}
              onPress={
