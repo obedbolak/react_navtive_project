@@ -1,7 +1,6 @@
 import { useFonts } from 'expo-font';
-import { router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface product {
@@ -122,7 +121,7 @@ const [loaded] = useFonts({
  
     <SafeAreaView style={{flex: 1}}>
     
-      <View style={styles.container1}>
+      {/* <View style={styles.container1}>
         <View style={styles.container11}>
           <Image source={{uri: 'https://img.icons8.com/?size=100&id=102729&format=png&color=000000'}} style={styles.image} />
         </View>
@@ -304,7 +303,7 @@ const [loaded] = useFonts({
         )
              })}  */}
 
-             </ScrollView>
+             {/* </ScrollView>
       </View>
       <View style={styles.container3}>
       <View style={styles.container31}>
@@ -337,8 +336,8 @@ const [loaded] = useFonts({
           Settings
         </Text>
       </View>
-      </View>
-
+      </View>  */}
+     
     
 
 

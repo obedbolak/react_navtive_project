@@ -17,6 +17,9 @@ const chats = () => {
        */}
       
       <Image source={{uri: Array.isArray(profileImage) ? profileImage[0] : profileImage}} style={{width:100, height:100, borderRadius:50}}/>
+      {/* another container */}
+      
+
       
     </View>
   )
@@ -24,4 +27,6 @@ const chats = () => {
 
 export default chats
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+ 
+})

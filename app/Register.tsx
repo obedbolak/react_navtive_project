@@ -1,37 +1,57 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import Checkbox from 'expo-checkbox';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
+
 import {
-  ActivityIndicator,
-  Image,
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View
+    ActivityIndicator,
+    Image,
+    Keyboard,
+    KeyboardAvoidingView,
+    Platform,
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    View,
 } from 'react-native';
 
-const LoginScreen = () => {
+
+
+const Register = () => {
+  
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+const [acceptTerms, setAcceptTerms] = useState(false);
+
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
 
-  const handleLogin = () => {
+  const handleRegister = () => {
     Keyboard.dismiss();
     setIsLoading(true);
 
-    if (!username.trim() || !password.trim()) {
-      setError('Username and password are required');
-      setIsLoading(false);
-      return;
-    }
+  if (
+  !username.trim() ||
+  !email.trim() ||
+  !password.trim() ||
+  !confirmPassword.trim()
+) {
+  setError('All fields are required');
+  setIsLoading(false);
+  return;
+} else if (password !== confirmPassword) {
+  setError('Passwords do not match');
+  setIsLoading(false);
+  return;
+}
 
     // Simulate API call
     setTimeout(() => {
@@ -61,17 +81,24 @@ const LoginScreen = () => {
             <View style={styles.container2}>
               <View style={styles.formContainer}>
                 <View style={{flexDirection:'column', alignItems:'flex-start'}}>
-                  <Text style={styles.title}>Welcome Back!</Text>
-                <Text style={styles.subtitle}>Sign in to to continue with the App</Text></View>
+                  <Text style={styles.title}>Create Account!</Text>
+                <Text style={styles.subtitle}>Please Create Your Account</Text></View>
                 
-                <TextInput
-                  placeholder="Enter Email"
+                 <TextInput
+                  placeholder="Enter Name"
                   value={username}
                   onChangeText={setUsername}
                   style={styles.input}
                   autoCapitalize="none"
                 />
-              <View style={styles.passwordContainer}>
+                <TextInput
+                  placeholder="Enter Email"
+                  value={email}
+                  onChangeText={setEmail}
+                  style={styles.input}
+                  autoCapitalize="none"
+                />
+                  <View style={styles.passwordContainer}>
                     <TextInput
                       placeholder="Enter Password"
                       secureTextEntry={showPassword}
@@ -91,41 +118,63 @@ const LoginScreen = () => {
                       )}
                     </TouchableOpacity>
                   </View>
+                   <View style={styles.passwordContainer}>
+                    <TextInput
+                      placeholder="Confirm Password"
+                      secureTextEntry={showPassword}
+                      value={confirmPassword}
+                      onChangeText={setConfirmPassword}
+                      style={styles.passwordInput}
+                      autoCapitalize="none"
+                    />
+                    <TouchableOpacity
+                      onPress={() => setShowPassword(!showPassword)}
+                      style={styles.eyeButton}
+                    >
+                      {showPassword ? (
+                        <MaterialIcons name="visibility" size={20} color="black" />
+                      ) : (
+                        <MaterialIcons name="visibility-off" size={20} color="black" />
+                      )}
+                    </TouchableOpacity>
+                  </View>
                 
                 {error ? <Text style={styles.errorText}>{error}</Text> : null}
                 <TouchableOpacity
-                  onPress={handleLogin}
+                  onPress={handleRegister}
                   style={styles.loginButton}
                   disabled={isLoading}
                 >
                   {isLoading ? (
                     <ActivityIndicator color="#fff" />
                   ) : (
-                    <Text style={styles.loginButtonText}>Login</Text>
+                    <Text style={styles.loginButtonText}>Register</Text>
                   )}
                 </TouchableOpacity>
+                {/* <CheckBox /> */}
+                <View style={styles.termsContainer}>
+                  <Checkbox
+                            value={acceptTerms}
+                            onValueChange={setAcceptTerms}
+                            color={acceptTerms ? '#007bff' : undefined}
+                        />
+                  <Text style={styles.termsText}>
+                    I accept the <Text style={styles.link}>Terms & Conditions</Text>
+                  </Text>
+                </View>
+
                 
               </View>
             </View>
 
             {/* Container 3: Social Icons (flex: 1) */}
             <View style={styles.container3}>
-              <View style={{flex:1}}>
-                <Text style={styles.socialText}>Or continue with</Text>
-              </View>
-              <View style={{flexDirection:'row', justifyContent:'space-between', flex:2}}> 
-                <Image source={{uri:"https://img.icons8.com/?size=100&id=17949&format=png&color=000000"}} style={styles.socialIcon} />
-                <Image source={{uri:"https://img.icons8.com/color/48/000000/facebook-new.png"}} style={styles.socialIcon} />
-                {/* apple logo */}
-
-                <Image source={{uri:"https://img.icons8.com/?size=100&id=30840&format=png&color=000000"}} style={styles.socialIcon} />
-              
-              </View>
+            
              
 
-              <View style={{flex:1, flexDirection:"row", justifyContent:"center", alignItems:"center", gap:6, paddingBottom:20}}>
-                <Text>Don't have an account?</Text>
-                <TouchableOpacity onPress={() => router.replace('./Register')}><Text style={styles.footerLink}>Sign up</Text></TouchableOpacity>
+              <View style={{flex:1, flexDirection:"row", justifyContent:"center", alignItems:"flex-end", paddingBottom:50, gap:6 }}>
+                <Text>I have an account?</Text>
+                <TouchableOpacity onPress={() => router.replace('/login')}><Text style={styles.footerLink}>Sign In</Text></TouchableOpacity>
                 
               </View>
             </View>
@@ -136,7 +185,8 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+
+export default Register;
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -155,7 +205,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    
+    paddingVertical: 16,
+
   },
   logo: {
     width: 120,
@@ -164,7 +215,7 @@ const styles = StyleSheet.create({
   },
   // Container 2: Form Inputs
   container2: {
-    flex: 1.2,
+    flex: 2,
     justifyContent: 'center',
   },
   formContainer: {
@@ -269,5 +320,21 @@ const styles = StyleSheet.create({
     color: '#666',
     marginBottom: 8,
     textAlign: 'center',
+  },
+  termsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    marginTop: 16,
+    paddingLeft:10
+  },
+  termsText: {
+    marginLeft: 8,
+    color: '#333',
+    fontSize: 14,
+  },
+  link: {
+    color: '#007bff',
+    textDecorationLine: 'underline',
   },
 });

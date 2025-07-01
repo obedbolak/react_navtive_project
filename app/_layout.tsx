@@ -20,7 +20,9 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
+      <Stack>        
+                <Stack.Screen name="dashboard" options={{ headerShown: false, }} />
+
         <Stack.Screen
           name="login"
 
@@ -28,9 +30,10 @@ export default function RootLayout() {
             
            }}
         />
+
         <Stack.Screen name="index" options={{ headerShown: false, }} />
         <Stack.Screen name="chats" options={{ headerShown: false, }} />
-        <Stack.Screen name="dashboard" options={{ headerShown: false, }} />
+        <Stack.Screen name="Register" options={{ headerShown: false, }} />
         
         <Stack.Screen name="poductDetails" options={{ headerShown: false, }} />
         <Stack.Screen name="+not-found" />
