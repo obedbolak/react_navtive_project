@@ -2,7 +2,6 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import {
-  ActivityIndicator,
   Image,
   Keyboard,
   KeyboardAvoidingView,
@@ -25,7 +24,6 @@ const LoginScreen = () => {
 
   const handleLogin = () => {
     Keyboard.dismiss();
-    setIsLoading(true);
 
     if (!username.trim() || !password.trim()) {
       setError('Username and password are required');
@@ -98,13 +96,11 @@ const LoginScreen = () => {
                 <TouchableOpacity
                   onPress={handleLogin}
                   style={styles.loginButton}
-                  disabled={isLoading}
+                  
                 >
-                  {isLoading ? (
-                    <ActivityIndicator color="#fff" />
-                  ) : (
+                  
                     <Text style={styles.loginButtonText}>Login</Text>
-                  )}
+                
                 </TouchableOpacity>
                 
               </View>
