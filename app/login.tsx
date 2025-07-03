@@ -31,17 +31,19 @@ const LoginScreen = () => {
       setError('Username and password are required');
       setIsLoading(false);
       return;
+    }else if(password === "12345678" && username === "admin"){
+      router.replace("./dashboard")
     }
 
     // Simulate API call
-    setTimeout(() => {
-      if (password === 'password123') {
-        router.replace('./dashboard');
-      } else {
-        setError('Invalid credentials');
-      }
-      setIsLoading(false);
-    }, 1500);
+    // setTimeout(() => {
+    //   if (password === 'password123') {
+    //     router.replace('./dashboard');
+    //   } else {
+    //     setError('Invalid credentials');
+    //   }
+    //   setIsLoading(false);
+    // }, 1500);
   };
 
   return (

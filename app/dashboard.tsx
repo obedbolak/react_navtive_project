@@ -1,113 +1,127 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import React from 'react';
-import { Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Dashboard = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* Header Section */}
-      <View style={styles.container1}>
-        <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center' }}>
+      <View style={styles.headerContainer}>
+        <View style={styles.profileContainer}>
           <Image
             source={{ uri: "https://tse4.mm.bing.net/th/id/OIP.Gz62k7vTQNxqkz9Q6yE4NgHaHa?r=0&cb=thvnextc1&rs=1&pid=ImgDetMain&o=7&rm=3" }}
             style={styles.profileImage}
           />
           <View>
-            <Text style={{ color: 'gray' }}>Good morning</Text>
-            <Text style={{ fontWeight: 'bold', fontSize: 18 }}>John Doe</Text>
+            <Text style={styles.greetingText}>Good morning</Text>
+            <Text style={styles.userName}>John Doe</Text>
           </View>
         </View>
         <View style={styles.notificationIcon}>
           <MaterialIcons name="notifications-none" size={24} color="black" />
         </View>
       </View>
+      
+      <View style={styles.contentContainer}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {/* Search Bar */}
+          <View style={styles.searchContainer}>
+            <View style={styles.searchBar}>
+              <MaterialIcons name="search" size={20} color="gray" />
+              <TextInput 
+                placeholder="Search" 
+                style={styles.searchInput} 
+                placeholderTextColor="gray"
+              />
+              <MaterialIcons name="filter-alt" size={20} color="gray" />
+            </View>
+          </View>
 
-      {/* Search Bar */}
-      <View style={styles.container2}>
-        <View style={styles.searchBar}>
-          <MaterialIcons name="search" size={20} color="gray" />
-          <TextInput placeholder="Search" style={styles.searchInput} />
-          <MaterialIcons name="filter-alt" size={20} color="gray" />
-        </View>
+          {/* Banner Image */}
+          <View style={styles.bannerContainer}>
+            <ImageBackground
+              source={{ uri: "https://i.ytimg.com/vi/Kxr89dmvPNA/maxresdefault.jpg" }}
+              style={styles.bannerImage}
+              resizeMode="cover"
+            />
+          </View>
+
+          {/* Experiences Section */}
+          <View style={styles.experiencesContainer}>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>Experiences</Text>
+              <Text style={styles.viewAllText}>View all</Text>
+            </View>
+            <View style={styles.experienceIconsContainer}>
+              <View style={styles.iconContainer}>
+                <MaterialIcons name='music-video' size={44} color="black" />
+                <Text style={styles.iconLabel}>Music</Text>
+              </View>
+              <View style={styles.iconContainer}>
+                <MaterialIcons name='fastfood' size={44} color="black" />
+                <Text style={styles.iconLabel}>Food</Text>
+              </View>
+              <View style={styles.iconContainer}>
+                <MaterialIcons name='sports-bar' size={44} color="black" />
+                <Text style={styles.iconLabel}>Dance</Text>
+              </View>
+              <View style={styles.iconContainer}>
+                <MaterialIcons name='school' size={44} color="black" />
+                <Text style={styles.iconLabel}>Education</Text>
+              </View>
+            </View>
+          </View>
+
+          {/* Workshops Section */}
+          <View style={styles.workshopsContainer}>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>Workshops</Text>
+            </View>
+            <ImageBackground 
+              source={{ uri: "https://i.ytimg.com/vi/Kxr89dmvPNA/maxresdefault.jpg" }}
+              style={styles.workshopImage}
+            />
+          </View>
+          <View style={styles.workshopsContainer}>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>Workshops</Text>
+            </View>
+            <ImageBackground 
+              source={{ uri: "https://i.ytimg.com/vi/Kxr89dmvPNA/maxresdefault.jpg" }}
+              style={styles.workshopImage}
+            />
+          </View>
+        </ScrollView>
       </View>
 
-      {/* Banner Image */}
-      <View style={styles.container3}>
-        <ImageBackground
-          source={{ uri: "https://i.ytimg.com/vi/Kxr89dmvPNA/maxresdefault.jpg" }}
-          style={styles.bannerImage}
-          resizeMode="stretch"
-        />
-      </View>
-
-      {/* Remaining Containers (Placeholders) */}
-      <View style={styles.container4}>
-        <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-          <Text style={{fontSize:20, fontWeight:'bold'}}  >Experiences</Text>
-          <Text>View all</Text>
-        </View>
-        <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-          <View>
-            <MaterialIcons name='music-video' size={44} color="black"  style={{alignSelf:'flex-end'}}/>
-            <Text>Music</Text>
-            </View>
-             <View>
-            <MaterialIcons name='fastfood' size={44} color="black"  style={{alignSelf:'flex-end'}}/>
-            <Text>Food</Text>
-            </View>
-             <View>
-            <MaterialIcons name='sports-bar' size={44} color="black"  style={{alignSelf:'flex-end'}}/>
-            <Text>Dancer</Text>
-            </View>
-             <View>
-            <MaterialIcons name='school' size={44} color="black"  style={{alignSelf:'flex-end'}}/>
-            <Text>Education</Text>
-            </View>
-         
-          
-        </View>
-      </View>
-      <View style={styles.container5}>
-        <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-          <Text style={{fontSize:20, fontWeight:'bold'}}  >Workshops</Text>
-          
-        </View>
-        <ImageBackground 
-          source={{ uri: "https://i.ytimg.com/vi/Kxr89dmvPNA/maxresdefault.jpg" }}
-          style={styles.bannerImage}
-          resizeMode="stretch"
-        />
-      </View>
-      <View style={styles.container6}>
-        <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center', gap:40}}> 
-            <TouchableOpacity style={{ justifyContent:'space-between', alignItems:'center'}}>
+      {/* Bottom Navigation */}
+      <View style={styles.bottomNavContainer}>
+        <View style={styles.navButtonsContainer}>
+          <TouchableOpacity style={styles.navButton}>
             <MaterialIcons name="home" size={24} color="black" />
-          <Text>Home</Text>
+            <Text style={styles.navButtonText}>Home</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ justifyContent:'space-between', alignItems:'center'}}>
+          <TouchableOpacity style={styles.navButton}>
             <MaterialIcons name="search" size={24} color="black" />
-          <Text>Search</Text>
+            <Text style={styles.navButtonText}>Search</Text>
           </TouchableOpacity>
         </View>
        
-        <TouchableOpacity style={{ marginHorizontal:"43%", backgroundColor:'white', borderRadius:40, padding:10, position:'absolute', bottom:0}}>
+        <TouchableOpacity style={styles.addButton}>
           <MaterialIcons name="add-circle" size={54} color="black" />
+        </TouchableOpacity>
         
-        </TouchableOpacity>
-        <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center', gap:40}}>
-          <TouchableOpacity style={{ justifyContent:'space-between', alignItems:'center'}}>
-          <MaterialIcons name="person" size={24} color="black" />
-        <Text>Profile</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={{ justifyContent:'space-between', alignItems:'center'}}>
-          <MaterialIcons name="settings" size={24} color="black" />
-        <Text>Settings</Text>
-        </TouchableOpacity>
+        <View style={styles.navButtonsContainer}>
+          <TouchableOpacity style={styles.navButton}>
+            <MaterialIcons name="person" size={24} color="black" />
+            <Text style={styles.navButtonText}>Profile</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.navButton}>
+            <MaterialIcons name="settings" size={24} color="black" />
+            <Text style={styles.navButtonText}>Settings</Text>
+          </TouchableOpacity>
         </View>
-        
-
-        
       </View>
     </SafeAreaView>
   );
@@ -119,29 +133,40 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
-    paddingHorizontal: 5,
+    paddingHorizontal: 10,
   },
-  container1: {
-    flex: 0.3,
+  headerContainer: {
+    height: 70,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     backgroundColor: 'white',
     borderRadius: 10,
     marginBottom: 10,
-    elevation: 2, // Android shadow
-    shadowColor: '#000', // iOS shadow
+    elevation: 2,
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: 2,
+  },
+  profileContainer: {
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
   },
   profileImage: {
     height: 50,
     width: 50,
-    borderRadius: 15, // Makes it circular
-    borderWidth: 1,
-    borderColor: '#eee',
+    borderRadius: 15,
+  },
+  greetingText: {
+    color: 'gray',
+    fontSize: 14,
+  },
+  userName: {
+    fontWeight: 'bold',
+    fontSize: 18,
   },
   notificationIcon: {
     backgroundColor: 'white',
@@ -153,16 +178,19 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
-  container2: {
-    flex: 0.4,
-    marginBottom: 10,
+  contentContainer: {
+    flex: 1,
+    marginBottom: 40,
+  },
+  searchContainer: {
+    marginBottom: 15,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
     paddingHorizontal: 15,
-    paddingVertical: 8,
+    paddingVertical: 12,
     borderRadius: 20,
     elevation: 2,
     shadowColor: '#000',
@@ -174,43 +202,99 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 10,
     fontSize: 16,
+    color: 'black',
   },
-  container3: {
-    flex: 1,
+  bannerContainer: {
+    height: 180,
     borderRadius: 15,
-    overflow: 'hidden', // Ensures borderRadius works on ImageBackground
+    overflow: 'hidden',
+    marginBottom: 15,
   },
   bannerImage: {
     height: '100%',
     width: '100%',
-    borderRadius: 15,
   },
-  container4: {
-    flex: 0.6,
-    paddingHorizontal: 10,
-    gap: 10,
-    margin: 10,
+  experiencesContainer: {
+    backgroundColor: 'white',
     borderRadius: 15,
+    padding: 15,
+    marginBottom: 15,
   },
-  container5: {
-    flex: 1,
-    gap: 10,
-   paddingHorizontal: 10,
-    borderRadius: 15,
-  },
-  container6: {
-    flex: .3,
+  sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    marginBottom: 15,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  viewAllText: {
+    color: 'gray',
+  },
+  experienceIconsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  iconContainer: {
+    alignItems: 'center',
+  },
+  iconLabel: {
+    marginTop: 5,
+    fontSize: 14,
+  },
+  workshopsContainer: {
+    height: 200,
+    backgroundColor: 'skyblue',
+    borderRadius: 15,
+    padding: 15,
+    marginBottom: 45,
+
+  },
+  workshopImage: {
+    height: '100%',
+    width: '100%',
+    overflow: 'hidden',
+    borderRadius: 15,
+  },
+  bottomNavContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     backgroundColor: 'white',
-    borderRadius: 10,
-    marginBottom: 10,
-    elevation: 2, // Android shadow
-    shadowColor: '#000', // iOS shadow
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+  },
+  navButtonsContainer: {
+    flexDirection: 'row',
+    gap: 40,
+  },
+  navButton: {
+    alignItems: 'center',
+  },
+  navButtonText: {
+    fontSize: 12,
+    marginTop: 5,
+  },
+  addButton: {
+    position: 'absolute',
+    bottom: 10,
+    left: '50%',
+    marginLeft: -27,
+    backgroundColor: 'white',
+    borderRadius: 40,
+    padding: 5,
+    elevation: 5,
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.2,
     shadowRadius: 4,
   },
 });
